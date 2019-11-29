@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Preparation extends BaseEntity{
 
     @ManyToOne
-    @JoinColumn(name="id")
+    @JoinColumn(name="id", insertable=false, updatable=false)
     private Group group;
 
     @Column(name="name")
