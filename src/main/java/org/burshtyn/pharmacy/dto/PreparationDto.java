@@ -5,7 +5,7 @@ import java.util.List;
 
 public class PreparationDto extends BaseDto {
 
-    private GroupDto group;
+    private PreparationGroupDto group;
 
     private String name;
 
@@ -19,11 +19,11 @@ public class PreparationDto extends BaseDto {
 
     private List<StructureSubstanceDto> structureSubstances;
 
-    public GroupDto getGroup() {
+    public PreparationGroupDto getGroup() {
         return group;
     }
 
-    public void setGroup(GroupDto group) {
+    public void setGroup(PreparationGroupDto group) {
         this.group = group;
     }
 

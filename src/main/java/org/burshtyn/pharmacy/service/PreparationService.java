@@ -7,6 +7,7 @@ import org.burshtyn.pharmacy.repository.PreparationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +29,7 @@ public class PreparationService extends BaseServiceImpl<Preparation, Preparation
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
         Optional<Preparation> optionalPreparation = findOne(id);
         if (optionalPreparation.isPresent()) {
@@ -43,13 +45,8 @@ public class PreparationService extends BaseServiceImpl<Preparation, Preparation
                 soldService.delete(sold);
             }
 
-
-
-
             super.delete(id);
         }
-
-
     }
 
     @Override

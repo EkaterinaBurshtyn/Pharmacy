@@ -10,7 +10,7 @@ public class Preparation extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "gr_id", insertable = false, updatable = false)
-    private Group group;
+    private PreparationGroup preparationGroup;
 
     @Column(name = "name")
     private String name;
@@ -51,12 +51,12 @@ public class Preparation extends BaseEntity {
     )
     private Set<StructureSubstance> structureSubstances = new HashSet<>();
 
-    public Group getGroup() {
-        return group;
+    public PreparationGroup getPreparationGroup() {
+        return preparationGroup;
     }
 
-    public void setGroup(Group group) {
-        this.group = group;
+    public void setPreparationGroup(PreparationGroup preparationGroup) {
+        this.preparationGroup = preparationGroup;
     }
 
     public String getName() {

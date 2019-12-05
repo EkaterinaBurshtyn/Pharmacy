@@ -1,7 +1,7 @@
 package org.burshtyn.pharmacy.dto;
 
 
-public class GroupDto extends BaseDto {
+public class PreparationGroupDto extends BaseDto {
 
     private String name;
 

@@ -7,13 +7,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class PreparationDtoMapper implements BaseDtoMapper<PreparationDto, Preparation> {
 
     @Autowired
-    private GroupDtoMapper groupDtoMapper;
+    private PreparationGroupDtoMapper preparationGroupDtoMapper;
 
     @Autowired
     private ModeOfApplicationDtoMapper modeOfApplicationDtoMapper;
@@ -32,7 +31,7 @@ public class PreparationDtoMapper implements BaseDtoMapper<PreparationDto, Prepa
     public PreparationDto mapToDto(Preparation entity) {
         PreparationDto dto = new PreparationDto();
         dto.setId(entity.getId());
-        dto.setGroup(groupDtoMapper.mapToDto(entity.getGroup()));
+        dto.setGroup(preparationGroupDtoMapper.mapToDto(entity.getPreparationGroup()));
         dto.setName(entity.getName());
 
         if (entity.getModesOfApplication() != null && !entity.getModesOfApplication().isEmpty()) {

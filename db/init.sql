@@ -2,29 +2,29 @@ DROP SCHEMA IF EXISTS `pharmacy`;
 CREATE DATABASE `pharmacy` DEFAULT CHARACTER SET utf8;
 USE `pharmacy`;
 
-CREATE TABLE `group`
+CREATE TABLE `preparation_group`
 (
-    `id`   int(11)      NOT NULL,
-    `name` varchar(100) NOT NULL,
+    `id`   int(11) AUTO_INCREMENT NOT NULL,
+    `name` varchar(100)           NOT NULL,
     PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `package_type`
 (
-    `id`   int(11)      NOT NULL,
-    `name` varchar(100) NOT NULL,
+    `id`   int(11) AUTO_INCREMENT NOT NULL,
+    `name` varchar(100)           NOT NULL,
     PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `preparation`
 (
-    `id`           int(11)      NOT NULL,
-    `gr_id`        int(11)      NOT NULL,
-    `name`         varchar(100) NOT NULL,
-    `pack_type_id` int(11)      NOT NULL,
+    `id`           int(11) AUTO_INCREMENT NOT NULL,
+    `pr_gr_id`     int(11)                NOT NULL,
+    `name`         varchar(100)           NOT NULL,
+    `pack_type_id` int(11)                NOT NULL,
     PRIMARY KEY (`id`),
-    KEY `gr_id` (`gr_id`),
-    CONSTRAINT `preparation_ibfk_1` FOREIGN KEY (`gr_id`) REFERENCES `group` (id),
+    KEY `pr_gr_id` (`pr_gr_id`),
+    CONSTRAINT `preparation_ibfk_1` FOREIGN KEY (`pr_gr_id`) REFERENCES `preparation_group` (id),
     KEY `pack_type_id` (`pack_type_id`),
     CONSTRAINT `preparation_ibfk_2` FOREIGN KEY (`pack_type_id`) REFERENCES `package_type` (id)
 );
@@ -32,9 +32,9 @@ CREATE TABLE `preparation`
 
 CREATE TABLE `availability`
 (
-    `id`       int(11)       NOT NULL,
-    `pr_id`    int(11)       NOT NULL,
-    `quantity` double(10, 5) NOT NULL,
+    `id`       int(11) AUTO_INCREMENT NOT NULL,
+    `pr_id`    int(11)                NOT NULL,
+    `quantity` double(10, 5)          NOT NULL,
     PRIMARY KEY (`id`),
     KEY `pr_id` (`pr_id`),
     CONSTRAINT `availabity_ibfk_1` FOREIGN KEY (`pr_id`) REFERENCES `preparation` (id)
@@ -42,7 +42,7 @@ CREATE TABLE `availability`
 
 CREATE TABLE `state`
 (
-    `id`          int(11) NOT NULL,
+    `id`          int(11) AUTO_INCREMENT NOT NULL,
     `description` varchar(5000) DEFAULT NULL,
     PRIMARY KEY (`id`)
 );
@@ -73,7 +73,7 @@ CREATE TABLE `indication`
 
 CREATE TABLE `mode_of_application`
 (
-    `id`          int(11) NOT NULL,
+    `id`          int(11) AUTO_INCREMENT NOT NULL,
     `description` varchar(5000) DEFAULT NULL,
     PRIMARY KEY (`id`)
 );
@@ -91,7 +91,7 @@ CREATE TABLE `mode_of_application_preparation`
 
 CREATE TABLE `receipt`
 (
-    `id`        int(11) NOT NULL,
+    `id`        int(11) AUTO_INCREMENT NOT NULL,
     `date_time` datetime DEFAULT NULL,
     PRIMARY KEY (`id`)
 );
@@ -99,11 +99,11 @@ CREATE TABLE `receipt`
 
 CREATE TABLE `sold`
 (
-    `id`             int(11)       NOT NULL,
-    `pr_id`          int(11)       NOT NULL,
-    `receipt_id`     int(11)       NOT NULL,
-    `quantity`       double(10, 5) NOT NULL,
-    `price_per_pack` double(10, 5) NOT NULL,
+    `id`             int(11) AUTO_INCREMENT NOT NULL,
+    `pr_id`          int(11)                NOT NULL,
+    `receipt_id`     int(11)                NOT NULL,
+    `quantity`       double(10, 5)          NOT NULL,
+    `price_per_pack` double(10, 5)          NOT NULL,
     PRIMARY KEY (`id`),
     KEY `pr_id` (`pr_id`),
     CONSTRAINT `sold_ibfk_1` FOREIGN KEY (`pr_id`) REFERENCES `preparation` (id),
@@ -113,7 +113,7 @@ CREATE TABLE `sold`
 
 CREATE TABLE `structure_substance`
 (
-    `id`   int(11) NOT NULL,
+    `id`   int(11) AUTO_INCREMENT NOT NULL,
     `name` varchar(5000) DEFAULT NULL,
     PRIMARY KEY (`id`)
 );
