@@ -1,6 +1,4 @@
-package org.burshtyn.pharmacy.entity.sale;
-
-import org.burshtyn.pharmacy.entity.BaseEntity;
+package org.burshtyn.pharmacy.entity;
 
 import javax.persistence.*;
 import java.time.Instant;
