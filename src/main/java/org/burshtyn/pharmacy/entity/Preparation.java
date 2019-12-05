@@ -1,11 +1,8 @@
 package org.burshtyn.pharmacy.entity;
 
-import org.burshtyn.pharmacy.entity.indication.Contraindication;
-import org.burshtyn.pharmacy.entity.indication.Indication;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "preparation")
@@ -24,17 +21,27 @@ public class Preparation extends BaseEntity {
             joinColumns = @JoinColumn(name = "pr_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "ma_id", referencedColumnName = "id")
     )
-    private List<ModeOfApplication> modesOfApplication = new ArrayList<>();
+    private Set<ModeOfApplication> modesOfApplication = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "pack_type_id", insertable = false, updatable = false)
     private PackageType packageType;
 
-    @OneToMany(mappedBy = "preparation")
-    private List<Indication> indications = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(
+            name = "indication",
+            joinColumns = @JoinColumn(name = "pr_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "st_id", referencedColumnName = "id")
+    )
+    private Set<State> indications = new HashSet<>();
 
-    @OneToMany(mappedBy = "preparation")
-    private List<Contraindication> contraindications = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(
+            name = "contraindication",
+            joinColumns = @JoinColumn(name = "pr_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "st_id", referencedColumnName = "id")
+    )
+    private Set<State> contraindications = new HashSet<>();
 
     @ManyToMany
     @JoinTable(
@@ -42,7 +49,7 @@ public class Preparation extends BaseEntity {
             joinColumns = @JoinColumn(name = "pr_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "ss_id", referencedColumnName = "id")
     )
-    private List<StructureSubstance> structureSubstances = new ArrayList<>();
+    private Set<StructureSubstance> structureSubstances = new HashSet<>();
 
     public Group getGroup() {
         return group;
@@ -60,11 +67,11 @@ public class Preparation extends BaseEntity {
         this.name = name;
     }
 
-    public List<ModeOfApplication> getModesOfApplication() {
+    public Set<ModeOfApplication> getModesOfApplication() {
         return modesOfApplication;
     }
 
-    public void setModesOfApplication(List<ModeOfApplication> modesOfApplication) {
+    public void setModesOfApplication(Set<ModeOfApplication> modesOfApplication) {
         this.modesOfApplication = modesOfApplication;
     }
 
@@ -76,28 +83,27 @@ public class Preparation extends BaseEntity {
         this.packageType = packageType;
     }
 
-    public List<Indication> getIndications() {
+    public Set<State> getIndications() {
         return indications;
     }
 
-    public void setIndications(List<Indication> indications) {
+    public void setIndications(Set<State> indications) {
         this.indications = indications;
     }
 
-    public List<Contraindication> getContraindications() {
+    public Set<State> getContraindications() {
         return contraindications;
     }
 
-    public void setContraindications(List<Contraindication> contraindications) {
+    public void setContraindications(Set<State> contraindications) {
         this.contraindications = contraindications;
     }
 
-    public List<StructureSubstance> getStructureSubstances() {
+    public Set<StructureSubstance> getStructureSubstances() {
         return structureSubstances;
     }
 
-    public void setStructureSubstances(List<StructureSubstance> structureSubstances) {
+    public void setStructureSubstances(Set<StructureSubstance> structureSubstances) {
         this.structureSubstances = structureSubstances;
     }
-
 }

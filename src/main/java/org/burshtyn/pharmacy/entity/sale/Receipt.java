@@ -2,10 +2,7 @@ package org.burshtyn.pharmacy.entity.sale;
 
 import org.burshtyn.pharmacy.entity.BaseEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +11,7 @@ import java.util.List;
 @Table(name = "receipt")
 public class Receipt extends BaseEntity {
 
-    @OneToMany(mappedBy = "receipt")
+    @OneToMany(mappedBy = "receipt", cascade = CascadeType.REMOVE)
     private List<Sold> solds = new ArrayList<>();
 
     @Column(name = "date_time")

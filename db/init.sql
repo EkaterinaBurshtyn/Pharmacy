@@ -49,10 +49,9 @@ CREATE TABLE `state`
 
 CREATE TABLE `contraindication`
 (
-    `id`    int(11) NOT NULL,
     `pr_id` int(11) NOT NULL,
     `st_id` int(11) NOT NULL,
-    PRIMARY KEY (`id`),
+    PRIMARY KEY (`pr_id`, `st_id`),
     KEY `pr_id` (`pr_id`),
     CONSTRAINT `contraindication_ibfk_1` FOREIGN KEY (`pr_id`) REFERENCES `preparation` (id),
     KEY `st_id` (`st_id`),
@@ -61,10 +60,9 @@ CREATE TABLE `contraindication`
 
 CREATE TABLE `indication`
 (
-    `id`    int(11) NOT NULL,
     `pr_id` int(11) NOT NULL,
     `st_id` int(11) NOT NULL,
-    PRIMARY KEY (`id`),
+    PRIMARY KEY (`pr_id`, `st_id`),
     KEY `pr_id` (`pr_id`),
     CONSTRAINT `indication_ibfk_1` FOREIGN KEY (`pr_id`) REFERENCES `preparation` (id),
     KEY `st_id` (`st_id`),
@@ -84,6 +82,7 @@ CREATE TABLE `mode_of_application_preparation`
 (
     `pr_id` int(11) NOT NULL,
     `ma_id` int(11) NOT NULL,
+    PRIMARY KEY (`pr_id`, `ma_id`),
     KEY `pr_id` (`pr_id`),
     KEY `ma_id` (`ma_id`),
     CONSTRAINT `mode_of_application_preparation_ibfk_1` FOREIGN KEY (`pr_id`) REFERENCES `preparation` (id),
@@ -123,6 +122,7 @@ CREATE TABLE `structure_substance_preparation`
 (
     `pr_id` int(11) NOT NULL,
     `ss_id` int(11) NOT NULL,
+    PRIMARY KEY (`pr_id`, `ss_id`),
     KEY `pr_id` (`pr_id`),
     KEY `ss_id` (`ss_id`),
     CONSTRAINT `structure_substance_preparation_ibfk_1` FOREIGN KEY (`pr_id`) REFERENCES `preparation` (id),

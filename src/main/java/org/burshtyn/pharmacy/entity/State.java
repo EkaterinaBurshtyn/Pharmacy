@@ -1,4 +1,4 @@
-package org.burshtyn.pharmacy.entity.indication;
+package org.burshtyn.pharmacy.entity;
 
 import org.burshtyn.pharmacy.entity.BaseEntity;
 
