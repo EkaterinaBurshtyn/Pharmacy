@@ -1,4 +1,4 @@
-package org.burshtyn.pharmacy.repository.entity;
+package org.burshtyn.pharmacy.entity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ public class Group extends BaseEntity {
     @Column(name="name")
     private String name;
 
-    @OneToMany(mappedBy = "group")
+    @OneToMany(mappedBy = "group", fetch = FetchType.LAZY)
     private List<Preparation> preparations = new ArrayList<>();
 
     public String getName() {
@@ -21,4 +21,13 @@ public class Group extends BaseEntity {
     public void setName(String name) {
         this.name = name;
     }
+
+    public List<Preparation> getPreparations() {
+        return preparations;
+    }
+
+    public void setPreparations(List<Preparation> preparations) {
+        this.preparations = preparations;
+    }
+
 }

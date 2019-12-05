@@ -1,17 +1,17 @@
-package org.burshtyn.pharmacy.repository.entity;
+package org.burshtyn.pharmacy.entity;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "availabity")
-public class Availabity extends BaseEntity {
+@Table(name = "availability")
+public class Availability extends BaseEntity {
 
     @OneToOne
-    @JoinColumn(name="id", insertable=false, updatable=false)
+    @JoinColumn(name = "pr_id", insertable = false, updatable = false)
     private Preparation preparation;
 
-    @Column(name="quantity")
-    private String quantity;
+    @Column(name = "quantity")
+    private Double quantity;
 
     public Preparation getPreparation() {
         return preparation;
@@ -21,11 +21,11 @@ public class Availabity extends BaseEntity {
         this.preparation = preparation;
     }
 
-    public String getQuantity() {
+    public Double getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(Double quantity) {
         this.quantity = quantity;
     }
 }

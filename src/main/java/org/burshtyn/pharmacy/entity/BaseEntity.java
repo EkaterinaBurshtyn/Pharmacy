@@ -1,4 +1,4 @@
-package org.burshtyn.pharmacy.repository.entity;
+package org.burshtyn.pharmacy.entity;
 
 import javax.persistence.*;
 
