@@ -1,6 +1,7 @@
 package org.burshtyn.pharmacy.mapper;
 
 import org.burshtyn.pharmacy.dto.*;
+import org.burshtyn.pharmacy.dto.preparation.PreparationDto;
 import org.burshtyn.pharmacy.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,9 @@ public class PreparationDtoMapper implements BaseDtoMapper<PreparationDto, Prepa
 
     @Override
     public PreparationDto mapToDto(Preparation entity) {
+        if (entity== null) {
+            return null;
+        }
         PreparationDto dto = new PreparationDto();
         dto.setId(entity.getId());
         dto.setGroup(preparationGroupDtoMapper.mapToDto(entity.getPreparationGroup()));
@@ -75,11 +79,13 @@ public class PreparationDtoMapper implements BaseDtoMapper<PreparationDto, Prepa
         return dto;
     }
 
+    /**
+     * Don't remove this method.
+     * It has been created only for compatibility.
+     */
     @Override
     public Preparation mapToEntity(PreparationDto dto) {
-        Preparation entity = new Preparation();
-        entity.setName(dto.getName());
-        return entity;
+        return null;
     }
 
 }

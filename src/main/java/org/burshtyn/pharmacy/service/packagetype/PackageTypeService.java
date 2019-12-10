@@ -1,7 +1,8 @@
-package org.burshtyn.pharmacy.service;
+package org.burshtyn.pharmacy.service.packagetype;
 
 import org.burshtyn.pharmacy.entity.PackageType;
 import org.burshtyn.pharmacy.repository.PackageTypeRepository;
+import org.burshtyn.pharmacy.service.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

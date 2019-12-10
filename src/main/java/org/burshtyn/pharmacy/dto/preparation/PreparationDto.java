@@ -1,22 +1,17 @@
-package org.burshtyn.pharmacy.dto;
+package org.burshtyn.pharmacy.dto.preparation;
 
+
+import org.burshtyn.pharmacy.dto.*;
 
 import java.util.List;
 
 public class PreparationDto extends BaseDto {
-
     private PreparationGroupDto group;
-
     private String name;
-
     private List<ModeOfApplicationDto> modesOfApplication;
-
     private PackageTypeDto packageType;
-
     private List<StateDto> indications;
-
     private List<StateDto> contraindications;
-
     private List<StructureSubstanceDto> structureSubstances;
 
     public PreparationGroupDto getGroup() {

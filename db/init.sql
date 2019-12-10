@@ -5,14 +5,14 @@ USE `pharmacy`;
 CREATE TABLE `preparation_group`
 (
     `id`   int(11) AUTO_INCREMENT NOT NULL,
-    `name` varchar(100)           NOT NULL,
+    `name` varchar(100),
     PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `package_type`
 (
     `id`   int(11) AUTO_INCREMENT NOT NULL,
-    `name` varchar(100)           NOT NULL,
+    `name` varchar(100),
     PRIMARY KEY (`id`)
 );
 
@@ -20,7 +20,7 @@ CREATE TABLE `preparation`
 (
     `id`           int(11) AUTO_INCREMENT NOT NULL,
     `pr_gr_id`     int(11)                NOT NULL,
-    `name`         varchar(100)           NOT NULL,
+    `name`         varchar(100),
     `pack_type_id` int(11)                NOT NULL,
     PRIMARY KEY (`id`),
     KEY `pr_gr_id` (`pr_gr_id`),
@@ -34,7 +34,7 @@ CREATE TABLE `availability`
 (
     `id`       int(11) AUTO_INCREMENT NOT NULL,
     `pr_id`    int(11)                NOT NULL,
-    `quantity` double(10, 5)          NOT NULL,
+    `quantity` double(10, 5),
     PRIMARY KEY (`id`),
     KEY `pr_id` (`pr_id`),
     CONSTRAINT `availabity_ibfk_1` FOREIGN KEY (`pr_id`) REFERENCES `preparation` (id)
@@ -102,8 +102,8 @@ CREATE TABLE `sold`
     `id`             int(11) AUTO_INCREMENT NOT NULL,
     `pr_id`          int(11)                NOT NULL,
     `receipt_id`     int(11)                NOT NULL,
-    `quantity`       double(10, 5)          NOT NULL,
-    `price_per_pack` double(10, 5)          NOT NULL,
+    `quantity`       double(10, 5),
+    `price_per_pack` double(10, 5),
     PRIMARY KEY (`id`),
     KEY `pr_id` (`pr_id`),
     CONSTRAINT `sold_ibfk_1` FOREIGN KEY (`pr_id`) REFERENCES `preparation` (id),

@@ -1,14 +1,14 @@
-package org.burshtyn.pharmacy.dto;
+package org.burshtyn.pharmacy.dto.sold;
 
+
+import org.burshtyn.pharmacy.dto.BaseDto;
+import org.burshtyn.pharmacy.dto.receipt.ReceiptDto;
+import org.burshtyn.pharmacy.dto.preparation.PreparationDto;
 
 public class SoldDto extends BaseDto {
-
     private PreparationDto preparation;
-
     private ReceiptDto receipt;
-
     private Double quantity;
-
     private Double pricePerPack;
 
     public PreparationDto getPreparation() {

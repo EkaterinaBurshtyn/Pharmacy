@@ -9,7 +9,7 @@ import java.util.List;
 @Table(name = "receipt")
 public class Receipt extends BaseEntity {
 
-    @OneToMany(mappedBy = "receipt", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "receipt", cascade = CascadeType.ALL)
     private List<Sold> solds = new ArrayList<>();
 
     @Column(name = "date_time")
@@ -19,10 +19,6 @@ public class Receipt extends BaseEntity {
         return solds;
     }
 
-    public void setSolds(List<Sold> solds) {
-        this.solds = solds;
-    }
-
     public Instant getDate() {
         return date;
     }
@@ -30,4 +26,10 @@ public class Receipt extends BaseEntity {
     public void setDate(Instant date) {
         this.date = date;
     }
+
+    public void addSold (Sold sold) {
+        sold.setReceipt(this);
+        solds.add(sold);
+    }
+
 }

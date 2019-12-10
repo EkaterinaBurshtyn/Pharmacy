@@ -1,7 +1,7 @@
 package org.burshtyn.pharmacy.mapper;
 
-import org.burshtyn.pharmacy.dto.ReceiptDto;
-import org.burshtyn.pharmacy.dto.SoldDto;
+import org.burshtyn.pharmacy.dto.receipt.ReceiptDto;
+import org.burshtyn.pharmacy.dto.sold.SoldDto;
 import org.burshtyn.pharmacy.entity.Receipt;
 import org.burshtyn.pharmacy.entity.Sold;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +18,9 @@ public class ReceiptDtoMapper implements BaseDtoMapper<ReceiptDto, Receipt> {
 
     @Override
     public ReceiptDto mapToDto(Receipt entity) {
+        if (entity== null) {
+            return null;
+        }
         ReceiptDto dto = new ReceiptDto();
         dto.setId(entity.getId());
         dto.setDate(entity.getDate());
@@ -34,11 +37,13 @@ public class ReceiptDtoMapper implements BaseDtoMapper<ReceiptDto, Receipt> {
         return dto;
     }
 
+    /**
+     * Don't remove this method.
+     * It has been created only for compatibility.
+     */
     @Override
     public Receipt mapToEntity(ReceiptDto dto) {
-        Receipt entity = new Receipt();
-        entity.setDate(dto.getDate());
-        return entity;
+        return null;
     }
 
 }

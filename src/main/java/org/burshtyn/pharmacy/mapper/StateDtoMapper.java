@@ -9,6 +9,9 @@ public class StateDtoMapper implements BaseDtoMapper<StateDto, State> {
 
     @Override
     public StateDto mapToDto(State entity) {
+        if (entity== null) {
+            return null;
+        }
         StateDto dto = new StateDto();
         dto.setId(entity.getId());
         dto.setDescription(entity.getDescription());
@@ -17,6 +20,9 @@ public class StateDtoMapper implements BaseDtoMapper<StateDto, State> {
 
     @Override
     public State mapToEntity(StateDto dto) {
+        if (dto== null) {
+            return null;
+        }
         State entity = new State();
         entity.setDescription(dto.getDescription());
         return entity;

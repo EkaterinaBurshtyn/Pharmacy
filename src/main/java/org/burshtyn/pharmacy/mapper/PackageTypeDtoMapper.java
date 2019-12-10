@@ -9,6 +9,9 @@ public class PackageTypeDtoMapper implements BaseDtoMapper<PackageTypeDto, Packa
 
     @Override
     public PackageTypeDto mapToDto(PackageType entity) {
+        if (entity== null) {
+            return null;
+        }
         PackageTypeDto dto = new PackageTypeDto();
         dto.setId(entity.getId());
         dto.setName(entity.getName());
@@ -17,6 +20,9 @@ public class PackageTypeDtoMapper implements BaseDtoMapper<PackageTypeDto, Packa
 
     @Override
     public PackageType mapToEntity(PackageTypeDto dto) {
+        if (dto== null) {
+            return null;
+        }
         PackageType entity = new PackageType();
         entity.setName(dto.getName());
         return entity;

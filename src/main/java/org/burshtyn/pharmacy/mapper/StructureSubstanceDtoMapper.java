@@ -9,6 +9,9 @@ public class StructureSubstanceDtoMapper implements BaseDtoMapper<StructureSubst
 
     @Override
     public StructureSubstanceDto mapToDto(StructureSubstance entity) {
+        if (entity== null) {
+            return null;
+        }
         StructureSubstanceDto dto = new StructureSubstanceDto();
         dto.setId(entity.getId());
         dto.setName(entity.getName());
@@ -17,6 +20,9 @@ public class StructureSubstanceDtoMapper implements BaseDtoMapper<StructureSubst
 
     @Override
     public StructureSubstance mapToEntity(StructureSubstanceDto dto) {
+        if (dto== null) {
+            return null;
+        }
         StructureSubstance entity = new StructureSubstance();
         entity.setName(dto.getName());
         return entity;

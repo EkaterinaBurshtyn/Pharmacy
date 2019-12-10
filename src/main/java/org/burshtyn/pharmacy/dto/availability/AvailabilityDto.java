@@ -1,5 +1,8 @@
-package org.burshtyn.pharmacy.dto;
+package org.burshtyn.pharmacy.dto.availability;
 
+
+import org.burshtyn.pharmacy.dto.BaseDto;
+import org.burshtyn.pharmacy.dto.preparation.PreparationDto;
 
 public class AvailabilityDto extends BaseDto {
 

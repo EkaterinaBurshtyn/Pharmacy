@@ -3,14 +3,12 @@ package org.burshtyn.pharmacy.controller;
 
 import io.swagger.annotations.*;
 import org.burshtyn.pharmacy.dto.PreparationGroupDto;
-import org.burshtyn.pharmacy.entity.PreparationGroup;
-import org.burshtyn.pharmacy.mapper.PreparationGroupDtoMapper;
-import org.burshtyn.pharmacy.service.PreparationGroupService;
+import org.burshtyn.pharmacy.service.preparationgroup.PreparationGroupRestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Optional;
+import java.util.List;
 
 @Api(tags = {"Preparation-group"})
 @SwaggerDefinition(tags = {
@@ -20,32 +18,35 @@ import java.util.Optional;
 public class PreparationGroupController {
 
     @Autowired
-    private PreparationGroupDtoMapper preparationGroupDtoMapper;
-
-    @Autowired
-    private PreparationGroupService preparationGroupService;
+    private PreparationGroupRestService restService;
 
     @ApiOperation(value = "View a preparation group")
     @GetMapping("/preparation-groups/{id}")
-    public PreparationGroupDto get(
-            @ApiParam(value = "Preparation group id", required = true)
-            @PathVariable("id") Long id) {
-        Optional<PreparationGroup> optionalPreparationGroup = preparationGroupService.findOne(id);
-        if (optionalPreparationGroup.isPresent()) {
-            return preparationGroupDtoMapper.mapToDto(optionalPreparationGroup.get());
-        }
-        return null;
+    public PreparationGroupDto get(@PathVariable("id") Long id) {
+        return restService.getOne(id);
     }
 
+    @ApiOperation(value = "View all preparation groups")
+    @GetMapping("/preparation-groups")
+    public List<PreparationGroupDto> getAll() {
+        return restService.getAll();
+    }
 
     @ApiOperation(value = "Create a preparation group")
     @PostMapping("/preparation-groups")
     public PreparationGroupDto create(
             @ApiParam(value = "PreparationGroup", required = true)
-            @Valid @RequestBody PreparationGroupDto preparationGroupDto) {
-        PreparationGroup inEntity = preparationGroupDtoMapper.mapToEntity(preparationGroupDto);
-        PreparationGroup savedEntity = preparationGroupService.save(inEntity);
-        return preparationGroupDtoMapper.mapToDto(savedEntity);
+            @Valid @RequestBody PreparationGroupDto dto) {
+        return restService.create(dto);
+    }
+
+    @ApiOperation(value = "Update a preparation group")
+    @PutMapping("/preparation-groups/{id}")
+    public PreparationGroupDto update(
+            @PathVariable("id") Long id,
+            @ApiParam(value = "PreparationGroup", required = true)
+            @Valid @RequestBody PreparationGroupDto dto) {
+        return restService.update(id, dto);
     }
 
 }

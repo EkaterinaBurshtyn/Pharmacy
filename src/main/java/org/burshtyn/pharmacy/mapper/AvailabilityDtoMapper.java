@@ -1,6 +1,6 @@
 package org.burshtyn.pharmacy.mapper;
 
-import org.burshtyn.pharmacy.dto.AvailabilityDto;
+import org.burshtyn.pharmacy.dto.availability.AvailabilityDto;
 import org.burshtyn.pharmacy.entity.Availability;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +13,9 @@ public class AvailabilityDtoMapper implements BaseDtoMapper<AvailabilityDto, Ava
 
     @Override
     public AvailabilityDto mapToDto(Availability entity) {
+        if (entity== null) {
+            return null;
+        }
         AvailabilityDto dto = new AvailabilityDto();
         dto.setId(entity.getId());
         dto.setQuantity(entity.getQuantity());
@@ -20,10 +23,12 @@ public class AvailabilityDtoMapper implements BaseDtoMapper<AvailabilityDto, Ava
         return dto;
     }
 
+    /**
+     * Don't remove this method.
+     * It has been created only for compatibility.
+     */
     @Override
     public Availability mapToEntity(AvailabilityDto dto) {
-        Availability entity = new Availability();
-        entity.setQuantity(dto.getQuantity());
-        return entity;
+        return null;
     }
 }

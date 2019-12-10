@@ -9,6 +9,9 @@ public class ModeOfApplicationDtoMapper implements BaseDtoMapper<ModeOfApplicati
 
     @Override
     public ModeOfApplicationDto mapToDto(ModeOfApplication entity) {
+        if (entity== null) {
+            return null;
+        }
         ModeOfApplicationDto dto = new ModeOfApplicationDto();
         dto.setId(entity.getId());
         dto.setDescription(entity.getDescription());
@@ -17,6 +20,9 @@ public class ModeOfApplicationDtoMapper implements BaseDtoMapper<ModeOfApplicati
 
     @Override
     public ModeOfApplication mapToEntity(ModeOfApplicationDto dto) {
+        if (dto== null) {
+            return null;
+        }
         ModeOfApplication entity = new ModeOfApplication();
         entity.setDescription(dto.getDescription());
         return entity;
