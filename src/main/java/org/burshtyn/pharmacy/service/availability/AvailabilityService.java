@@ -24,8 +24,25 @@ public class AvailabilityService extends BaseServiceImpl<Availability, Availabil
         return repository;
     }
 
-    public List<Availability> findByPreparation(Preparation preparation) {
-        return repository.findByPreparation(preparation);
+    public Availability findByPreparation(Preparation preparation) {
+        List<Availability> availabilityList = repository.findByPreparation(preparation);
+        if (availabilityList != null && availabilityList.size() == 1) {
+            return availabilityList.get(0);
+        }
+        return null;
+    }
+
+    public Availability findByPreparationId(Long id) {
+        Preparation preparation = preparationService
+                .findOne(id)
+                .orElse(null);
+        if (preparation != null) {
+            List<Availability> availabilityList = repository.findByPreparation(preparation);
+            if (availabilityList != null && availabilityList.size() == 1) {
+                return availabilityList.get(0);
+            }
+        }
+        return null;
     }
 
     public Availability create(Long preparationId, Double quantity) {
@@ -54,6 +71,34 @@ public class AvailabilityService extends BaseServiceImpl<Availability, Availabil
         }
 
         return save(entity);
+    }
+
+    public Availability updateAvailabilityQuantity(Preparation preparation, Double oldSoldQuantity, Double newSoldQuantity) {
+        Availability availability = findByPreparation(preparation);
+        if (availability != null) {
+            availability.setQuantity(availability.getQuantity() + oldSoldQuantity);
+            return setNewAvailabilityQuantity(newSoldQuantity, availability);
+        }
+        return null;
+    }
+
+    public Availability decreaseAvailability(Preparation preparation, Double soldQuantity) {
+        return updateAvailabilityQuantity(preparation, (double) 0, soldQuantity);
+    }
+
+    public Availability increaseAvailability(Preparation preparation, Double oldSoldQuantity) {
+        return updateAvailabilityQuantity(preparation, oldSoldQuantity, (double) 0);
+    }
+
+    private Availability setNewAvailabilityQuantity(Double newSoldQuantity, Availability availability) {
+        if (availability.getQuantity().compareTo(newSoldQuantity) < 0) {
+            return null;
+        }
+        if (newSoldQuantity != 0) {
+            availability.setQuantity(availability.getQuantity() - newSoldQuantity);
+        }
+
+        return save(availability);
     }
 
     private void fillEntity(Availability entity, Long preparationId, Double quantity) {

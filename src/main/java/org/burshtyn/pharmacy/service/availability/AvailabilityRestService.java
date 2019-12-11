@@ -26,6 +26,10 @@ public class AvailabilityRestService {
         return dtoMapper.mapToDto(optional.get());
     }
 
+    public AvailabilityDto getOneByPreparationId(Long id) {
+        return dtoMapper.mapToDto(service.findByPreparationId(id));
+    }
+
     public AvailabilityDto create(AvailabilityPersistDto dto) {
         return dtoMapper.mapToDto(service.create(dto.getPreparationId(), dto.getQuantity()));
     }

@@ -36,8 +36,8 @@ public class PreparationService extends BaseServiceImpl<Preparation, Preparation
         if (optionalPreparation.isPresent()) {
             Preparation preparation = optionalPreparation.get();
 
-            List<Availability> availabilityList = availabilityService.findByPreparation(preparation);
-            for (Availability availability : availabilityList) {
+            Availability availability = availabilityService.findByPreparation(preparation);
+            if (availability != null) {
                 availabilityService.delete(availability);
             }
 

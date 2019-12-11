@@ -26,6 +26,15 @@ public class AvailabilityController {
         return restService.getOne(id);
     }
 
+    @ApiOperation(value = "View a availability for preparation")
+    @GetMapping("/availability")
+    public AvailabilityDto getByPreparationId(
+            @ApiParam(value = "Preparation Id")
+            @RequestParam(value = "preparationId", required = true)
+                    Long id) {
+        return restService.getOneByPreparationId(id);
+    }
+
     @ApiOperation(value = "Create a availability")
     @PostMapping("/availability")
     public AvailabilityDto create(
@@ -42,5 +51,6 @@ public class AvailabilityController {
             @Valid @RequestBody AvailabilityPersistDto dto) {
         return restService.update(id, dto);
     }
+
 
 }
