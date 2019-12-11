@@ -7,11 +7,11 @@ import javax.persistence.*;
 public class Sold extends BaseEntity {
 
     @OneToOne
-    @JoinColumn(name="pr_id", insertable=false, updatable=false)
+    @JoinColumn(name="pr_id")
     private Preparation preparation;
 
     @ManyToOne
-    @JoinColumn(name = "receipt_id", insertable = false, updatable = false)
+    @JoinColumn(name = "receipt_id")
     private Receipt receipt;
 
     @Column(name = "quantity")

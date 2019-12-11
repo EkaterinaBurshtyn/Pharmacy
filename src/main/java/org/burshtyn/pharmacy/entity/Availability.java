@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Availability extends BaseEntity {
 
     @OneToOne
-    @JoinColumn(name = "pr_id", insertable = false, updatable = false)
+    @JoinColumn(name = "pr_id")
     private Preparation preparation;
 
     @Column(name = "quantity")

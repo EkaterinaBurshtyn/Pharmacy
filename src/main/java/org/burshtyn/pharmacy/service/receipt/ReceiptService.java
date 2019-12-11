@@ -27,17 +27,21 @@ public class ReceiptService extends BaseServiceImpl<Receipt, ReceiptRepository> 
     public Receipt create(Instant date, List<Sold> soldList) {
         Receipt entity = new Receipt();
         fillEntity(entity, date, soldList);
+        if (entity.getSolds().isEmpty()) {
+            return null;
+        }
         return save(entity);
     }
 
     private void fillEntity(Receipt entity, Instant date, List<Sold> soldList) {
         entity.setDate(date);
         for (Sold sold : soldList) {
-            entity.addSold(sold);
+            if (sold!=null) {
+                entity.addSold(sold);
+            }
         }
     }
 
-    @Transactional
     public Receipt update(Long id, Instant date, List<Sold> soldList) {
         Optional<Receipt> optional = findOne(id);
         if (!optional.isPresent()) {

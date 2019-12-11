@@ -9,7 +9,7 @@ import java.util.List;
 public class Preparation extends BaseEntity {
 
     @ManyToOne
-    @JoinColumn(name = "pr_gr_id", insertable = false, updatable = false)
+    @JoinColumn(name = "pr_gr_id")
     private PreparationGroup preparationGroup;
 
     @Column(name = "name")
@@ -24,7 +24,7 @@ public class Preparation extends BaseEntity {
     private List<ModeOfApplication> modesOfApplication = new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn(name = "pack_type_id", insertable = false, updatable = false)
+    @JoinColumn(name = "pack_type_id")
     private PackageType packageType;
 
     @ManyToMany
